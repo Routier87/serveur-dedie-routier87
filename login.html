@@ -4,29 +4,106 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet"
-href="assets/css/style.css">
+<title>Connexion Admin</title>
+
+<link rel="stylesheet" href="assets/css/style.css">
 
 </head>
 
 <body>
 
-<form class="login-box">
+<div class="login-box">
 
-<h1>Connexion Admin</h1>
+<h1>Connexion Panel Admin</h1>
 
 <input type="text"
+id="username"
 placeholder="Nom utilisateur">
 
 <input type="password"
+id="password"
 placeholder="Mot de passe">
 
-<button>
+<button onclick="login()">
 Connexion
 </button>
 
-</form>
+<p id="error"></p>
+
+</div>
+
+<script>
+
+const users = [
+
+{
+username: "fondateur",
+password: "200187",
+role: "Fondateur"
+},
+
+{
+username: "cofondateur",
+password: "FarmSimulfr89_fs25",
+role: "Co-Fondateur"
+},
+
+{
+username: "responsable_site",
+password: "Mr_Wolf_live_fs25",
+role: "Responsable Site"
+},
+
+{
+username: "responsableserveur",
+password: "oxiwanteed13_fs25",
+role: "Responsable Serveur"
+}
+
+];
+
+function login() {
+
+const username =
+document.getElementById("username").value;
+
+const password =
+document.getElementById("password").value;
+
+const user = users.find(u =>
+u.username === username
+&&
+u.password === password
+);
+
+if(user) {
+
+localStorage.setItem(
+"role",
+user.role
+);
+
+localStorage.setItem(
+"username",
+user.username
+);
+
+window.location.href =
+"admin/panel.html";
+
+} else {
+
+document.getElementById("error")
+.innerText =
+"Identifiants incorrects";
+
+}
+
+}
+
+</script>
 
 </body>
 </html>
