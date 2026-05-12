@@ -1,0 +1,23 @@
+@media(max-width: 900px) {
+
+header {
+
+flex-direction: column;
+gap: 20px;
+
+}
+
+nav ul {
+
+flex-direction: column;
+align-items: center;
+
+}
+
+.hero h1 {
+
+font-size: 35px;
+
+}
+
+}
