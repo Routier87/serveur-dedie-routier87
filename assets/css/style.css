@@ -38,7 +38,6 @@ nav ul {
 
 display: flex;
 gap: 20px;
-
 list-style: none;
 
 }
@@ -47,13 +46,6 @@ nav a {
 
 color: white;
 text-decoration: none;
-transition: 0.3s;
-
-}
-
-nav a:hover {
-
-color: #9DB300;
 
 }
 
@@ -75,7 +67,7 @@ margin-bottom: 20px;
 display: grid;
 
 grid-template-columns:
-repeat(auto-fit, minmax(300px,1fr));
+repeat(auto-fit,minmax(300px,1fr));
 
 gap: 20px;
 
@@ -90,10 +82,6 @@ background: #1A1A1A;
 padding: 30px;
 
 border-radius: 20px;
-
-text-decoration: none;
-
-color: white;
 
 transition: 0.3s;
 
@@ -114,10 +102,32 @@ font-size: 50px;
 
 }
 
+.search-box {
+
+padding: 20px 40px;
+
+}
+
+.search-box input {
+
+width: 100%;
+padding: 20px;
+
+background: #111;
+
+border: none;
+
+color: white;
+
+border-radius: 15px;
+
+}
+
 .login-box {
 
 display: flex;
 flex-direction: column;
+
 gap: 15px;
 
 width: 400px;
@@ -138,13 +148,13 @@ select {
 
 padding: 15px;
 
-border: none;
-
-border-radius: 10px;
-
 background: #222;
 
+border: none;
+
 color: white;
+
+border-radius: 10px;
 
 }
 
@@ -152,14 +162,22 @@ button {
 
 padding: 15px;
 
+background: #9DB300;
+
 border: none;
 
 border-radius: 10px;
 
-background: #9DB300;
-
 font-weight: bold;
 
 cursor: pointer;
+
+}
+
+footer {
+
+padding: 30px;
+text-align: center;
+background: #111;
 
 }
