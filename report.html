@@ -1,37 +1,52 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-
 <meta charset="UTF-8">
-
-<link rel="stylesheet"
-href="assets/css/style.css">
-
+<title>Report</title>
+<link rel="stylesheet" href="assets/css/style.css">
 </head>
-
 <body>
 
-<form class="login-box">
+<div class="login-box">
 
-<h1>
-Envoyer un Report
-</h1>
+<h1>Report</h1>
 
-<textarea
-placeholder="Explique le problème">
-</textarea>
+<textarea id="message" placeholder="Explique ton problème"></textarea>
 
-<button>
+<button onclick="sendWebhook()">
 Envoyer
 </button>
 
-</form>
+</div>
 
 <script>
 
-const webhook =
-"https://discord.com/api/webhooks/1503476702402187504/ojgK08tj7qn7LbQBAU5AzUDD5eyk_jQs2krYiVM5qMKJpZlKGlWSyy7dgAD1uqK060TO";
+const webhook = "https://discord.com/api/webhooks/1503476702402187504/ojgK08tj7qn7LbQBAU5AzUDD5eyk_jQs2krYiVM5qMKJpZlKGlWSyy7dgAD1uqK060TO";
+
+function sendWebhook() {
+
+const message =
+document.getElementById("message").value;
+
+fetch(webhook, {
+
+method: "POST",
+
+headers: {
+"Content-Type": "application/json"
+},
+
+body: JSON.stringify({
+content: "📢 Nouveau report FS25 :\n" + message
+})
+
+})
+
+.then(() => {
+alert("Report envoyé");
+});
+
+}
 
 </script>
 
