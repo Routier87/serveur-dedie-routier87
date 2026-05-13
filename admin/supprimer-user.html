@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Supprimer Utilisateur</title>
+
+<link rel="stylesheet"
+href="../assets/css/style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+<h1>
+Supprimer Utilisateur
+</h1>
+
+</div>
+
+<nav>
+
+<ul>
+
+<li>
+<a href="../index.html">
+Accueil
+</a>
+</li>
+
+<li>
+<a href="panel.html">
+Panel Admin
+</a>
+</li>
+
+</ul>
+
+</nav>
+
+</header>
+
+<section class="mods-page"
+id="users-container">
+
+</section>
+
+<script>
+
+let users =
+JSON.parse(localStorage.getItem("users"))
+|| [];
+
+const container =
+document.getElementById("users-container");
+
+function loadUsers(){
+
+container.innerHTML = "";
+
+users.forEach((user,index)=>{
+
+container.innerHTML += `
+
+<div class="mod-box">
+
+<h2>
+${user.username}
+</h2>
+
+<p>
+${user.role}
+</p>
+
+<button onclick="deleteUser(${index})">
+
+Supprimer
+
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+function deleteUser(index){
+
+users.splice(index,1);
+
+localStorage.setItem(
+"users",
+JSON.stringify(users)
+);
+
+loadUsers();
+
+}
+
+loadUsers();
+
+</script>
+
+</body>
+</html>
