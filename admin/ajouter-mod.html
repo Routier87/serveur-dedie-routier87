@@ -4,6 +4,9 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ajouter une Mise à Jour</title>
 
 <link rel="stylesheet"
 href="../assets/css/style.css">
@@ -12,32 +15,128 @@ href="../assets/css/style.css">
 
 <body>
 
-<form class="login-box">
+<header>
 
-<h1>Ajouter un Mod</h1>
+<div class="logo">
 
-<input type="text"
-placeholder="Nom du mod">
+<h1>
+Panel Admin
+</h1>
 
-<input type="text"
-placeholder="Image URL">
+</div>
 
-<input type="text"
-placeholder="Lien téléchargement">
+<nav>
 
-<select>
+<ul>
 
-<option>Véhicules</option>
-<option>Outils</option>
-<option>Maps</option>
+<li>
+<a href="../index.html">
+Retour Accueil
+</a>
+</li>
 
-</select>
+<li>
+<a href="panel.html">
+Panel Admin
+</a>
+</li>
 
-<button>
-Ajouter
+</ul>
+
+</nav>
+
+</header>
+
+<section class="admin-page">
+
+<div class="admin-box">
+
+<h1>
+Ajouter une Mise à Jour
+</h1>
+
+<p class="admin-desc">
+
+Ajoute ici une nouvelle mise à jour mods FS25.
+
+</p>
+
+<input
+type="text"
+id="title"
+placeholder="Exemple : Mise à jour 14/05/2026">
+
+<input
+type="text"
+id="link"
+placeholder="Lien du dossier mods">
+
+<button onclick="saveMod()">
+
+Ajouter la mise à jour
+
 </button>
 
-</form>
+<div id="success-message">
+
+</div>
+
+</div>
+
+</section>
+
+<script>
+
+function saveMod() {
+
+const title =
+document.getElementById("title").value;
+
+const link =
+document.getElementById("link").value;
+
+if(title === "" || link === "") {
+
+alert("Remplis tous les champs");
+
+return;
+
+}
+
+const mods =
+JSON.parse(localStorage.getItem("modsFolders"))
+|| [];
+
+mods.push({
+
+title: title,
+link: link
+
+});
+
+localStorage.setItem(
+"modsFolders",
+JSON.stringify(mods)
+);
+
+document.getElementById(
+"success-message"
+).innerHTML = `
+
+<div class="success-box">
+
+✅ Mise à jour ajoutée avec succès
+
+</div>
+
+`;
+
+document.getElementById("title").value = "";
+document.getElementById("link").value = "";
+
+}
+
+</script>
 
 </body>
 </html>
