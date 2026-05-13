@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Mods FS25</title>
+
+<link rel="stylesheet"
+href="assets/css/style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+<h1>
+Mods FS25
+</h1>
+
+</div>
+
+<nav>
+
+<ul>
+
+<li>
+<a href="index.html">
+Accueil
+</a>
+</li>
+
+<li>
+<a href="report.html">
+Report
+</a>
+</li>
+
+<li>
+<a href="login.html">
+Connexion
+</a>
+</li>
+
+</ul>
+
+</nav>
+
+</header>
+
+<h1 class="title">
+
+Toutes les mises à jour
+
+</h1>
+
+<section class="mods-page"
+id="mods-container">
+
+</section>
+
+<script>
+
+const mods =
+JSON.parse(localStorage.getItem("modsFolders"))
+|| [];
+
+const container =
+document.getElementById("mods-container");
+
+mods.reverse().forEach(mod => {
+
+container.innerHTML += `
+
+<div class="mod-box">
+
+<h2>
+${mod.title}
+</h2>
+
+<p>
+📅 ${mod.date}
+</p>
+
+<p>
+📦 ${mod.size}
+</p>
+
+<a href="${mod.link}"
+target="_blank">
+
+<button>
+
+Télécharger
+
+</button>
+
+</a>
+
+</div>
+
+`;
+
+});
+
+</script>
+
+</body>
+</html>
