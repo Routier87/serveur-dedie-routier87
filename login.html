@@ -1,4 +1,25 @@
 <!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Connexion</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="login-box">
+
+<h1>Connexion Admin</h1>
+
+<input type="text" id="username" placeholder="Nom utilisateur">
+
+<input type="password" id="password" placeholder="Mot de passe">
+
+<button onclick="login()">
+Connexion
+</button>
+
+<p id="error"></p>
 
 </div>
 
@@ -43,35 +64,4 @@ document.getElementById("password").value;
 const user = users.find(u =>
 u.username === username
 &&
-u.password === password
-);
-
-if(user) {
-
-localStorage.setItem(
-"role",
-user.role
-);
-
-localStorage.setItem(
-"username",
-user.username
-);
-
-window.location.href =
-"admin/panel.html";
-
-} else {
-
-document.getElementById("error")
-.innerText =
-"Identifiants incorrects";
-
-}
-
-}
-
-</script>
-
-</body>
 </html>
