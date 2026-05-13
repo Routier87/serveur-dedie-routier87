@@ -1,73 +1,57 @@
 <!DOCTYPE html>
+<html lang="fr">
 
-const role = localStorage.getItem("role");
-const username = localStorage.getItem("username");
+<head>
 
-if(!role) {
-window.location.href = "../login.html";
-}
+<meta charset="UTF-8">
 
-function logout() {
-localStorage.clear();
-window.location.href = "../login.html";
-}
+<title>Panel Admin</title>
 
-</script>
+<link rel="stylesheet"
+href="../assets/css/style.css">
+
+</head>
+
+<body>
 
 <header>
 
-<div class="logo-box">
-<img src="../assets/images/logo.png" class="logo-img">
-<div class="logo-text">Panel Admin</div>
-</div>
+<div class="logo">
 
-<nav>
-<ul>
-<li><a href="../index.html">Accueil</a></li>
-<li><a href="#" onclick="logout()">Déconnexion</a></li>
-</ul>
-</nav>
+<h1>
+Panel Admin
+</h1>
+
+</div>
 
 </header>
 
-<h1 class="title">
-Bienvenue <span id="name"></span>
+<h1 class="admin-title">
+
+Bienvenue Admin
+
 </h1>
 
-<section class="categories">
+<section class="admin-grid">
 
-<a class="card" href="ajouter-mod.html">
-<div class="card-content">
-<h2>Ajouter Mod</h2>
-<p>Ajouter des mods FS25</p>
-<button>Accéder</button>
-</div>
-</a>
+<a class="admin-card"
+href="ajouter-mod.html">
 
-<a class="card" href="supprimer-mod.html">
-<div class="card-content">
-<h2>Supprimer Mod</h2>
-<p>Supprimer des mods FS25</p>
-<button>Accéder</button>
-</div>
-</a>
+<h2>
+Ajouter Mise à Jour
+</h2>
 
-<a class="card" href="utilisateurs.html">
-<div class="card-content">
-<h2>Utilisateurs</h2>
-<p>Gérer les utilisateurs</p>
-<button>Accéder</button>
-</div>
+<p>
+Ajouter un dossier mods
+</p>
+
+<button>
+Accéder
+</button>
+
 </a>
 
 </section>
-
-<script>
-
-document.getElementById("name")
-.innerText = username + " (" + role + ")";
-
-</script>
 
 </body>
 </html>
