@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Ajouter Utilisateur</title>
+
+<link rel="stylesheet"
+href="../assets/css/style.css">
+
+</head>
+
+<body>
+
+<div class="login-box">
+
+<h1>
+Ajouter Utilisateur
+</h1>
+
+<input type="text"
+id="username"
+placeholder="Nom utilisateur">
+
+<input type="password"
+id="password"
+placeholder="Mot de passe">
+
+<select id="role">
+
+<option>
+Fondateur
+</option>
+
+<option>
+Co-Fondateur
+</option>
+
+<option>
+Responsable Site
+</option>
+
+<option>
+Responsable Serveur
+</option>
+
+<option>
+Staff
+</option>
+
+</select>
+
+<button onclick="saveUser()">
+
+Créer utilisateur
+
+</button>
+
+</div>
+
+<script>
+
+function saveUser(){
+
+const username =
+document.getElementById("username").value;
+
+const password =
+document.getElementById("password").value;
+
+const role =
+document.getElementById("role").value;
+
+const users =
+JSON.parse(localStorage.getItem("users"))
+|| [];
+
+users.push({
+
+username,
+password,
+role
+
+});
+
+localStorage.setItem(
+"users",
+JSON.stringify(users)
+);
+
+alert("Utilisateur ajouté");
+
+}
+
+</script>
+
+</body>
+</html>
