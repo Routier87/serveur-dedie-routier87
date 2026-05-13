@@ -4,6 +4,7 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Connexion</title>
 
@@ -14,94 +15,315 @@ href="assets/css/style.css">
 
 <body>
 
-<div class="login-box">
+<header>
+
+<div class="logo">
+
+<img src="assets/images/logo.png">
+
+<h1>
+Serveur Dédié Routier
+</h1>
+
+</div>
+
+<nav>
+
+<ul>
+
+<li>
+<a href="index.html">
+Accueil
+</a>
+</li>
+
+<li>
+<a href="mods.html">
+Mods
+</a>
+</li>
+
+</ul>
+
+</nav>
+
+</header>
+
+<!-- CHOIX CONNEXION -->
+
+<section class="choice-login">
+
+<!-- ADMIN -->
+
+<div class="choice-card">
+
+<h2>
+Connexion Admin
+</h2>
+
+<p>
+Accès au panel administration.
+</p>
+
+<button onclick="showAdminLogin()">
+
+Connexion Admin
+
+</button>
+
+</div>
+
+<!-- UTILISATEUR -->
+
+<div class="choice-card">
+
+<h2>
+Connexion Utilisateur
+</h2>
+
+<p>
+Connexion pour voir les mods du serveur.
+</p>
+
+<button onclick="showUserLogin()">
+
+Connexion Utilisateur
+
+</button>
+
+</div>
+
+</section>
+
+<!-- PANEL ADMIN -->
+
+<div class="login-box"
+id="admin-login"
+style="display:none;">
 
 <h1>
 Connexion Admin
 </h1>
 
 <input type="text"
-id="username"
+id="admin-username"
 placeholder="Nom utilisateur">
 
 <input type="password"
-id="password"
+id="admin-password"
 placeholder="Mot de passe">
 
-<button onclick="login()">
+<button onclick="loginAdmin()">
 
 Connexion
 
 </button>
 
-<p id="error"></p>
+<p id="admin-error"></p>
+
+</div>
+
+<!-- PANEL USER -->
+
+<div class="login-box"
+id="user-login"
+style="display:none;">
+
+<h1>
+Connexion Utilisateur
+</h1>
+
+<input type="text"
+id="user-username"
+placeholder="Nom Discord">
+
+<input type="password"
+id="user-password"
+placeholder="Mot de passe">
+
+<button onclick="loginUser()">
+
+Connexion
+
+</button>
+
+<p id="user-error"></p>
+
+<hr>
+
+<h2>
+Créer un compte
+</h2>
+
+<input type="text"
+id="register-username"
+placeholder="Nom Discord">
+
+<input type="password"
+id="register-password"
+placeholder="Mot de passe">
+
+<button onclick="registerUser()">
+
+Créer un compte
+
+</button>
 
 </div>
 
 <script>
 
-const users = [
+/* AFFICHAGE */
+
+function showAdminLogin(){
+
+document.getElementById("admin-login")
+.style.display = "flex";
+
+document.getElementById("user-login")
+.style.display = "none";
+
+}
+
+function showUserLogin(){
+
+document.getElementById("user-login")
+.style.display = "flex";
+
+document.getElementById("admin-login")
+.style.display = "none";
+
+}
+
+/* ADMINS */
+
+const defaultAdmins = [
 
 {
-username: "fondateur",
-password: "878787",
-role: "Fondateur"
+username:"fondateur",
+password:"878787"
 },
 
 {
-username: "cofondateur",
-password: "fs25",
-role: "Co-Fondateur"
-},
-
-{
-username: "responsablesite",
-password: "fs25",
-role: "Responsable Site"
-},
-
-{
-username: "responsableserveur",
-password: "fs25",
-role: "Responsable Serveur"
+username:"cofondateur",
+password:"898989"
 }
 
 ];
 
-function login() {
+function loginAdmin(){
 
 const username =
-document.getElementById("username").value;
+document.getElementById(
+"admin-username"
+).value;
 
 const password =
-document.getElementById("password").value;
+document.getElementById(
+"admin-password"
+).value;
 
-const user = users.find(u =>
-u.username === username
+const admin =
+defaultAdmins.find(a =>
+a.username === username
 &&
-u.password === password
+a.password === password
 );
 
-if(user) {
+if(admin){
 
 localStorage.setItem(
-"role",
-user.role
-);
-
-localStorage.setItem(
-"username",
-user.username
+"isAdmin",
+"true"
 );
 
 window.location.href =
 "admin/panel.html";
 
-} else {
+}else{
 
-document.getElementById("error")
-.innerText =
+document.getElementById(
+"admin-error"
+).innerText =
 "Identifiants incorrects";
+
+}
+
+}
+
+/* USERS */
+
+function registerUser(){
+
+const username =
+document.getElementById(
+"register-username"
+).value;
+
+const password =
+document.getElementById(
+"register-password"
+).value;
+
+const users =
+JSON.parse(localStorage.getItem("users"))
+|| [];
+
+users.push({
+
+username,
+password
+
+});
+
+localStorage.setItem(
+"users",
+JSON.stringify(users)
+);
+
+alert("Compte créé");
+
+}
+
+function loginUser(){
+
+const username =
+document.getElementById(
+"user-username"
+).value;
+
+const password =
+document.getElementById(
+"user-password"
+).value;
+
+const users =
+JSON.parse(localStorage.getItem("users"))
+|| [];
+
+const user =
+users.find(u =>
+u.username === username
+&&
+u.password === password
+);
+
+if(user){
+
+localStorage.setItem(
+"isUser",
+"true"
+);
+
+window.location.href =
+"mods.html";
+
+}else{
+
+document.getElementById(
+"user-error"
+).innerText =
+"Compte introuvable";
 
 }
 
