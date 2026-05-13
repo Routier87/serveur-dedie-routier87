@@ -1,1 +1,1 @@
-console.log("Serveur Dédié Routier87 FS25 lancé");
+console.log("Serveur Dédié Routier FS25 lancé");
