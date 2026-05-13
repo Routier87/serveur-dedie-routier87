@@ -14,8 +14,6 @@
 
 <body>
 
-<!-- HEADER -->
-
 <header>
 
 <div class="logo">
@@ -31,7 +29,7 @@
 <ul>
 
 <li>
-<a href="#">Accueil</a>
+<a href="index.html">Accueil</a>
 </li>
 
 <li class="dropdown">
@@ -65,16 +63,22 @@ Fil d'actualité
 
 <div class="header-buttons">
 
-<a class="login-btn" href="login.html">
+<a class="login-btn"
+href="login.html">
+
 Connexion
+
 </a>
 
-<a class="register-btn" href="#">
+<a class="register-btn"
+href="#">
+
 S'inscrire
+
 </a>
 
 <a class="discord-top"
-href="https://discord.gg/8KpZYzRrBq"
+href="https://discord.gg/TONDISCORD"
 target="_blank">
 
 <img src="assets/images/discord.png">
@@ -85,11 +89,9 @@ target="_blank">
 
 </header>
 
-<!-- HERO -->
-
 <section class="hero-grid">
 
-<!-- GROS BOUTON MODS -->
+<!-- MODS -->
 
 <a class="big-card mods-card"
 href="#">
@@ -100,10 +102,12 @@ href="#">
 
 <div class="card-content">
 
-<h2>MODS</h2>
+<h2>
+MODS
+</h2>
 
 <p>
-Véhicules • Outils • Maps
+Toutes les mises à jour du serveur FS25.
 </p>
 
 <button>
@@ -114,10 +118,10 @@ Voir les Mods
 
 </a>
 
-<!-- REJOINDRE SERVEUR -->
+<!-- SERVEUR -->
 
 <a class="small-card server-card"
-href="LIEN_DU_SERVEUR"
+href="LIEN_SERVEUR"
 target="_blank">
 
 <img src="assets/images/server.jpg">
@@ -127,15 +131,15 @@ target="_blank">
 <div class="card-content">
 
 <h3>
-Rejoindre le Serveur
+Connexion Serveur
 </h3>
 
 <p>
-Connexion rapide au serveur FS25
+Rejoins directement le serveur.
 </p>
 
 <button>
-Se Connecter
+Se connecter
 </button>
 
 </div>
@@ -145,7 +149,7 @@ Se Connecter
 <!-- DISCORD -->
 
 <a class="small-card discord-card"
-href="https://discord.gg/8KpZYzRrBq"
+href="https://discord.gg/TONDISCORD"
 target="_blank">
 
 <img src="assets/images/discord-bg.jpg">
@@ -159,7 +163,7 @@ Discord
 </h3>
 
 <p>
-Rejoins notre communauté
+Rejoins la communauté.
 </p>
 
 <button>
@@ -186,7 +190,7 @@ Report
 </h3>
 
 <p>
-Signaler un bug ou problème
+Signaler un problème.
 </p>
 
 <button>
@@ -204,6 +208,32 @@ Faire un Report
 © Serveur Dédié Routier FS25
 
 </footer>
+
+<script>
+
+const modsList =
+JSON.parse(localStorage.getItem("modsFolders"))
+|| [];
+
+const modsContainer =
+document.getElementById("mods-list");
+
+modsList.forEach(mod => {
+
+modsContainer.innerHTML += `
+
+<a href="${mod.link}"
+target="_blank">
+
+${mod.title}
+
+</a>
+
+`;
+
+});
+
+</script>
 
 </body>
 </html>
