@@ -29,8 +29,6 @@ padding: 20px 40px;
 
 background: rgba(0,0,0,0.95);
 
-backdrop-filter: blur(10px);
-
 border-bottom: 1px solid #222;
 
 position: sticky;
@@ -145,12 +143,11 @@ padding: 15px;
 
 }
 
-/* BOUTONS HEADER */
+/* HEADER BUTTONS */
 
 .header-buttons {
 
 display: flex;
-
 align-items: center;
 
 gap: 15px;
@@ -188,29 +185,12 @@ color: black;
 
 }
 
-.login-btn:hover,
-.register-btn:hover {
-
-transform: scale(1.05);
-
-}
-
-/* DISCORD TOP */
-
 .discord-top img {
 
 width: 50px;
 height: 50px;
 
 border-radius: 12px;
-
-transition: 0.3s;
-
-}
-
-.discord-top img:hover {
-
-transform: scale(1.1);
 
 }
 
@@ -230,26 +210,9 @@ padding: 40px;
 
 }
 
-/* BIG CARD */
+/* CARDS */
 
-.big-card {
-
-grid-row: span 2;
-
-position: relative;
-
-overflow: hidden;
-
-border-radius: 30px;
-
-text-decoration: none;
-
-color: white;
-
-}
-
-/* SMALL CARD */
-
+.big-card,
 .small-card {
 
 position: relative;
@@ -262,9 +225,26 @@ text-decoration: none;
 
 color: white;
 
+border: 1px solid #222;
+
+transition: 0.4s;
+
 }
 
-/* IMAGES */
+.big-card {
+
+grid-row: span 2;
+
+}
+
+.big-card:hover,
+.small-card:hover {
+
+transform: scale(1.02);
+
+border-color: #A6C700;
+
+}
 
 .big-card img,
 .small-card img {
@@ -273,15 +253,6 @@ width: 100%;
 height: 100%;
 
 object-fit: cover;
-
-transition: 0.4s;
-
-}
-
-.big-card:hover img,
-.small-card:hover img {
-
-transform: scale(1.08);
 
 }
 
@@ -300,7 +271,7 @@ height: 100%;
 background:
 linear-gradient(
 rgba(0,0,0,0.2),
-rgba(0,0,0,0.8)
+rgba(0,0,0,0.85)
 );
 
 }
@@ -320,7 +291,7 @@ z-index: 2;
 
 .big-card h2 {
 
-font-size: 70px;
+font-size: 80px;
 
 margin-bottom: 15px;
 
@@ -370,6 +341,85 @@ transform: scale(1.05);
 
 }
 
+/* LOGIN */
+
+.login-box {
+
+display: flex;
+flex-direction: column;
+
+gap: 20px;
+
+width: 450px;
+
+margin: 100px auto;
+
+padding: 40px;
+
+background: #111;
+
+border-radius: 30px;
+
+border: 1px solid #222;
+
+}
+
+input,
+textarea {
+
+padding: 18px;
+
+background: #1A1A1A;
+
+border: 1px solid #333;
+
+border-radius: 15px;
+
+color: white;
+
+}
+
+/* ADMIN */
+
+.admin-title {
+
+padding: 50px;
+
+font-size: 50px;
+
+text-align: center;
+
+}
+
+.admin-grid {
+
+display: grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(300px,1fr));
+
+gap: 30px;
+
+padding: 40px;
+
+}
+
+.admin-card {
+
+background: #111;
+
+padding: 30px;
+
+border-radius: 25px;
+
+text-decoration: none;
+
+color: white;
+
+border: 1px solid #222;
+
+}
+
 /* FOOTER */
 
 footer {
@@ -388,7 +438,7 @@ border-top: 1px solid #222;
 
 /* RESPONSIVE */
 
-@media(max-width: 1100px) {
+@media(max-width:1100px){
 
 .hero-grid {
 
@@ -399,8 +449,6 @@ grid-template-rows: auto;
 }
 
 .big-card {
-
-grid-row: auto;
 
 height: 500px;
 
