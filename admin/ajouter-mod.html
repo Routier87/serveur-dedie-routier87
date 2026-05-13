@@ -4,9 +4,8 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Ajouter une Mise à Jour</title>
+<title>Ajouter Mods</title>
 
 <link rel="stylesheet"
 href="../assets/css/style.css">
@@ -20,7 +19,7 @@ href="../assets/css/style.css">
 <div class="logo">
 
 <h1>
-Panel Admin
+Ajouter Mods
 </h1>
 
 </div>
@@ -31,7 +30,7 @@ Panel Admin
 
 <li>
 <a href="../index.html">
-Retour Accueil
+Accueil
 </a>
 </li>
 
@@ -47,61 +46,51 @@ Panel Admin
 
 </header>
 
-<section class="admin-page">
-
-<div class="admin-box">
+<div class="login-box">
 
 <h1>
 Ajouter une Mise à Jour
 </h1>
 
-<p class="admin-desc">
-
-Ajoute ici une nouvelle mise à jour mods FS25.
-
-</p>
-
-<input
-type="text"
+<input type="text"
 id="title"
-placeholder="Exemple : Mise à jour 14/05/2026">
+placeholder="Titre">
 
-<input
-type="text"
+<input type="text"
+id="date"
+placeholder="Date">
+
+<input type="text"
+id="size"
+placeholder="Taille du fichier">
+
+<input type="text"
 id="link"
-placeholder="Lien du dossier mods">
+placeholder="Lien">
 
 <button onclick="saveMod()">
 
-Ajouter la mise à jour
+Ajouter
 
 </button>
 
-<div id="success-message">
-
 </div>
-
-</div>
-
-</section>
 
 <script>
 
-function saveMod() {
+function saveMod(){
 
 const title =
 document.getElementById("title").value;
 
+const date =
+document.getElementById("date").value;
+
+const size =
+document.getElementById("size").value;
+
 const link =
 document.getElementById("link").value;
-
-if(title === "" || link === "") {
-
-alert("Remplis tous les champs");
-
-return;
-
-}
 
 const mods =
 JSON.parse(localStorage.getItem("modsFolders"))
@@ -109,8 +98,10 @@ JSON.parse(localStorage.getItem("modsFolders"))
 
 mods.push({
 
-title: title,
-link: link
+title,
+date,
+size,
+link
 
 });
 
@@ -119,20 +110,7 @@ localStorage.setItem(
 JSON.stringify(mods)
 );
 
-document.getElementById(
-"success-message"
-).innerHTML = `
-
-<div class="success-box">
-
-✅ Mise à jour ajoutée avec succès
-
-</div>
-
-`;
-
-document.getElementById("title").value = "";
-document.getElementById("link").value = "";
+alert("Mise à jour ajoutée");
 
 }
 
