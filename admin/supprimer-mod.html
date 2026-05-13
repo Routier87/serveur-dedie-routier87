@@ -5,6 +5,8 @@
 
 <meta charset="UTF-8">
 
+<title>Supprimer Mods</title>
+
 <link rel="stylesheet"
 href="../assets/css/style.css">
 
@@ -12,23 +14,96 @@ href="../assets/css/style.css">
 
 <body>
 
-<h1 class="title">
+<header>
+
+<div class="logo">
+
+<h1>
 Supprimer Mods
 </h1>
 
-<section class="categories">
+</div>
 
-<div class="card">
+<nav>
 
-<h2>Nom du Mod</h2>
+<ul>
 
-<button>
+<li>
+<a href="../index.html">
+Accueil
+</a>
+</li>
+
+<li>
+<a href="panel.html">
+Panel Admin
+</a>
+</li>
+
+</ul>
+
+</nav>
+
+</header>
+
+<section class="mods-page"
+id="mods-container">
+
+</section>
+
+<script>
+
+let mods =
+JSON.parse(localStorage.getItem("modsFolders"))
+|| [];
+
+const container =
+document.getElementById("mods-container");
+
+function loadMods(){
+
+container.innerHTML = "";
+
+mods.forEach((mod,index)=>{
+
+container.innerHTML += `
+
+<div class="mod-box">
+
+<h2>
+${mod.title}
+</h2>
+
+<button onclick="deleteMod(${index})">
+
 Supprimer
+
 </button>
 
 </div>
 
-</section>
+`;
+
+});
+
+}
+
+function deleteMod(index){
+
+mods.splice(index,1);
+
+localStorage.setItem(
+"modsFolders",
+JSON.stringify(mods)
+);
+
+loadMods();
+
+}
+
+loadMods();
+
+</script>
 
 </body>
 </html>
