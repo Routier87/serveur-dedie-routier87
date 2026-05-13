@@ -1,239 +1,79 @@
-<!DOCTYPE html>
-<html lang="fr">
+<section class="admin-grid">
 
-<head>
+<!-- AJOUTER MOD -->
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Serveur Dédié Routier</title>
-
-<link rel="stylesheet" href="assets/css/style.css">
-
-</head>
-
-<body>
-
-<header>
-
-<div class="logo">
-
-<img src="assets/images/logo.png">
-
-<h1>Serveur Dédié Routier</h1>
-
-</div>
-
-<nav>
-
-<ul>
-
-<li>
-<a href="index.html">Accueil</a>
-</li>
-
-<li class="dropdown">
-
-<a href="#">
-Mods FS25 ▼
-</a>
-
-<div class="dropdown-content"
-id="mods-list">
-
-</div>
-
-</li>
-
-<li>
-<a href="#">
-Sélection du Roi
-</a>
-</li>
-
-<li>
-<a href="#">
-Fil d'actualité
-</a>
-</li>
-
-</ul>
-
-</nav>
-
-<div class="header-buttons">
-
-<a class="login-btn"
-href="login.html">
-
-Connexion
-
-</a>
-
-<a class="register-btn"
-href="#">
-
-S'inscrire
-
-</a>
-
-<a class="discord-top"
-href="https://discord.gg/C9pHpzpesU"
-target="_blank">
-
-<img src="assets/images/discord.png">
-
-</a>
-
-</div>
-
-</header>
-
-<section class="hero-grid">
-
-<!-- MODS -->
-
-<a class="big-card mods-card"
-href="#">
-
-<img src="assets/images/mods-bg.jpg">
-
-<div class="overlay"></div>
-
-<div class="card-content">
+<a class="admin-card"
+href="ajouter-mod.html">
 
 <h2>
-MODS
+Ajouter Mise à Jour
 </h2>
 
 <p>
-Toutes les mises à jour du serveur FS25.
+Ajouter un dossier mods
 </p>
 
 <button>
-Voir les Mods
+Accéder
 </button>
-
-</div>
 
 </a>
 
-<!-- SERVEUR -->
+<!-- SUPPRIMER MOD -->
 
-<a class="small-card server-card"
-href="LIEN_SERVEUR"
-target="_blank">
+<a class="admin-card"
+href="supprimer-mod.html">
 
-<img src="assets/images/server.jpg">
-
-<div class="overlay"></div>
-
-<div class="card-content">
-
-<h3>
-Connexion Serveur
-</h3>
+<h2>
+Supprimer Mise à Jour
+</h2>
 
 <p>
-Rejoins directement le serveur.
+Supprimer une mise à jour mods
 </p>
 
 <button>
-Se connecter
+Accéder
 </button>
-
-</div>
 
 </a>
 
-<!-- DISCORD -->
+<!-- AJOUTER USER -->
 
-<a class="small-card discord-card"
-href="https://discord.gg/C9pHpzpesU"
-target="_blank">
+<a class="admin-card"
+href="ajouter-user.html">
 
-<img src="assets/images/discord-bg.jpg">
-
-<div class="overlay"></div>
-
-<div class="card-content">
-
-<h3>
-Discord
-</h3>
+<h2>
+Ajouter Utilisateur
+</h2>
 
 <p>
-Rejoins la communauté.
+Créer un utilisateur admin
 </p>
 
 <button>
-Rejoindre
+Accéder
 </button>
-
-</div>
 
 </a>
 
-<!-- REPORT -->
+<!-- SUPPRIMER USER -->
 
-<a class="small-card report-card"
-href="report.html">
+<a class="admin-card"
+href="supprimer-user.html">
 
-<img src="assets/images/report.jpg">
-
-<div class="overlay"></div>
-
-<div class="card-content">
-
-<h3>
-Report
-</h3>
+<h2>
+Supprimer Utilisateur
+</h2>
 
 <p>
-Signaler un problème.
+Supprimer un utilisateur
 </p>
 
 <button>
-Faire un Report
+Accéder
 </button>
-
-</div>
 
 </a>
 
 </section>
-
-<footer>
-
-© Serveur Dédié Routier FS25
-
-</footer>
-
-<script>
-
-const modsList =
-JSON.parse(localStorage.getItem("modsFolders"))
-|| [];
-
-const modsContainer =
-document.getElementById("mods-list");
-
-modsList.forEach(mod => {
-
-modsContainer.innerHTML += `
-
-<a href="${mod.link}"
-target="_blank">
-
-${mod.title}
-
-</a>
-
-`;
-
-});
-
-</script>
-
-</body>
-</html>
