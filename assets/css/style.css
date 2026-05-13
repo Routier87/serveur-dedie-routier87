@@ -1,57 +1,32 @@
 * {
-
-button:hover {
-
-transform: scale(1.03);
-
-}
-
-.title {
-
-padding: 50px;
-font-size: 60px;
 text-align: center;
-
+background: #0d0d0d;
+border-top: 1px solid #222;
+margin-top: 60px;
+font-size: 18px;
 }
 
-.login-box {
+/* ANIMATIONS */
 
-display: flex;
-flex-direction: column;
-gap: 20px;
-width: 420px;
-margin: 100px auto;
-background: #111;
-padding: 40px;
-border-radius: 25px;
-
+@keyframes fade {
+from {
+opacity: 0;
+transform: translateY(10px);
 }
 
-input,
-textarea {
-
-padding: 18px;
-background: #1A1A1A;
-border: 1px solid #333;
-border-radius: 15px;
-color: white;
-
+to {
+opacity: 1;
+transform: translateY(0px);
+}
 }
 
-footer {
+/* RESPONSIVE */
 
-padding: 40px;
-text-align: center;
-background: #111;
-margin-top: 50px;
-
-}
-
-@media(max-width: 900px) {
+@media(max-width: 950px) {
 
 header {
 flex-direction: column;
-gap: 20px;
+gap: 25px;
 }
 
 nav ul {
@@ -59,8 +34,20 @@ flex-direction: column;
 align-items: center;
 }
 
+.hero {
+padding: 120px 25px;
+}
+
 .hero h1 {
-font-size: 45px;
+font-size: 48px;
+}
+
+.categories {
+padding: 25px;
+}
+
+.login-box {
+width: 90%;
 }
 
 }
