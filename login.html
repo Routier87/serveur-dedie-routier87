@@ -4,9 +4,12 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-<title>Connexion</title>
+<title>
+Connexion
+</title>
 
 <link rel="stylesheet"
 href="assets/css/style.css">
@@ -43,13 +46,19 @@ Mods
 </a>
 </li>
 
+<li>
+<a href="report.html">
+Report
+</a>
+</li>
+
 </ul>
 
 </nav>
 
 </header>
 
-<!-- CHOIX CONNEXION -->
+<!-- CHOIX -->
 
 <section class="choice-login">
 
@@ -62,7 +71,7 @@ Connexion Admin
 </h2>
 
 <p>
-Accès au panel administration.
+Accès au panel administration
 </p>
 
 <button onclick="showAdminLogin()">
@@ -82,7 +91,7 @@ Connexion Utilisateur
 </h2>
 
 <p>
-Connexion pour voir les mods du serveur.
+Connexion pour voir les mods
 </p>
 
 <button onclick="showUserLogin()">
@@ -95,7 +104,7 @@ Connexion Utilisateur
 
 </section>
 
-<!-- PANEL ADMIN -->
+<!-- CONNEXION ADMIN -->
 
 <div class="login-box"
 id="admin-login"
@@ -123,7 +132,7 @@ Connexion
 
 </div>
 
-<!-- PANEL USER -->
+<!-- CONNEXION USER -->
 
 <div class="login-box"
 id="user-login"
@@ -177,44 +186,71 @@ Créer un compte
 
 function showAdminLogin(){
 
-document.getElementById("admin-login")
-.style.display = "flex";
+document.getElementById(
+"admin-login"
+).style.display = "flex";
 
-document.getElementById("user-login")
-.style.display = "none";
+document.getElementById(
+"user-login"
+).style.display = "none";
 
 }
 
 function showUserLogin(){
 
-document.getElementById("user-login")
-.style.display = "flex";
+document.getElementById(
+"user-login"
+).style.display = "flex";
 
-document.getElementById("admin-login")
-.style.display = "none";
+document.getElementById(
+"admin-login"
+).style.display = "none";
 
 }
 
-/* ADMINS */
+/* COMPTES ADMINS */
 
 const defaultAdmins = [
 
 {
 username:"fondateur",
-password:"878787"
+password:"878787",
+role:"Fondateur"
 },
 
 {
 username:"cofondateur",
-password:"898989"
-}
+password:"898989",
+role:"Co-Fondateur"
+},
 
 {
-username:"Responsableserveur",
-password:"2026"
+username:"responsableserveur",
+password:"2026",
+role:"Responsable Serveur"
+},
+
+{
+username:"responsablesite",
+password:"2026",
+role:"Responsable Site"
+},
+
+{
+username:"staff",
+password:"2026",
+role:"Staff"
+},
+
+{
+username:"membre",
+password:"2026",
+role:"Membre"
 }
 
 ];
+
+/* CONNEXION ADMIN */
 
 function loginAdmin(){
 
@@ -230,9 +266,11 @@ document.getElementById(
 
 const admin =
 defaultAdmins.find(a =>
+
 a.username === username
 &&
 a.password === password
+
 );
 
 if(admin){
@@ -240,6 +278,11 @@ if(admin){
 localStorage.setItem(
 "isAdmin",
 "true"
+);
+
+localStorage.setItem(
+"adminRole",
+admin.role
 );
 
 window.location.href =
@@ -256,7 +299,7 @@ document.getElementById(
 
 }
 
-/* USERS */
+/* INSCRIPTION USER */
 
 function registerUser(){
 
@@ -270,8 +313,21 @@ document.getElementById(
 "register-password"
 ).value;
 
+if(
+username === ""
+||
+password === ""
+){
+
+alert("Remplis tous les champs");
+return;
+
+}
+
 const users =
-JSON.parse(localStorage.getItem("users"))
+JSON.parse(
+localStorage.getItem("users")
+)
 || [];
 
 users.push({
@@ -286,9 +342,11 @@ localStorage.setItem(
 JSON.stringify(users)
 );
 
-alert("Compte créé");
+alert("Compte créé avec succès");
 
 }
+
+/* CONNEXION USER */
 
 function loginUser(){
 
@@ -303,14 +361,18 @@ document.getElementById(
 ).value;
 
 const users =
-JSON.parse(localStorage.getItem("users"))
+JSON.parse(
+localStorage.getItem("users")
+)
 || [];
 
 const user =
 users.find(u =>
+
 u.username === username
 &&
 u.password === password
+
 );
 
 if(user){
