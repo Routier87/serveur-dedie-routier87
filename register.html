@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<ul>
+<li><a href="index.html">Accueil</a></li>
+<li><a href="login.html">Connexion</a></li>
+</ul>
+</nav>
+</header>
+
+<div class="login-box">
+
+<h1>Inscription</h1>
+
+<input type="text" id="register-username" placeholder="Nom Discord">
+
+<input type="password" id="register-password" placeholder="Mot de passe">
+
+<button onclick="registerUser()">
+Créer un compte
+</button>
+
+<p id="register-message"></p>
+
+</div>
+
+<script>
+
+function registerUser(){
+
+const username = document.getElementById("register-username").value;
+const password = document.getElementById("register-password").value;
+
+if(username === "" || password === ""){
+alert("Remplis tous les champs");
+return;
+}
+
+let users = JSON.parse(localStorage.getItem("users")) || [];
+
+const alreadyExists = users.find(u => u.username === username);
+
+if(alreadyExists){
+alert("Ce compte existe déjà");
+return;
+}
+
+users.push({
+username,
+password,
+role:"Membre"
+});
+
+localStorage.setItem("users",JSON.stringify(users));
+
+localStorage.setItem("isUser","true");
+localStorage.setItem("currentUser",username);
+
+alert("Compte créé avec succès");
+
+window.location.href = "mods.html";
+
+}
+
+</script>
+
+</body>
+</html>
