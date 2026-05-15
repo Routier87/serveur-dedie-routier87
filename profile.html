@@ -1,57 +1,376 @@
 <!DOCTYPE html>
+<html lang="fr">
 
-<h2 id="profile-name">Utilisateur</h2>
-<p id="profile-role">Membre</p>
+<head>
 
-<input type="text" id="new-username" placeholder="Nouveau pseudo">
-<input type="password" id="new-password" placeholder="Nouveau mot de passe">
+<meta charset="UTF-8">
 
-<button onclick="saveProfile()">Sauvegarder</button>
-<button class="logout-btn" onclick="logout()">Déconnexion</button>
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Profil
+</title>
+
+<link rel="stylesheet"
+href="assets/css/style.css">
+
+</head>
+
+<body>
+
+<script>
+
+/* SECURITE */
+
+const isUser =
+localStorage.getItem("isUser");
+
+const isAdmin =
+localStorage.getItem("isAdmin");
+
+if(
+isUser !== "true"
+&&
+isAdmin !== "true"
+){
+
+window.location.href =
+"login.html";
+
+}
+
+</script>
+
+<header>
+
+<div class="logo">
+
+<img src="assets/images/logo.png">
+
+<h1>
+Serveur Dédié Routier
+</h1>
+
+</div>
+
+<nav>
+
+<ul>
+
+<li>
+<a href="index.html">
+Accueil
+</a>
+</li>
+
+<li>
+<a href="mods.html">
+Mods FS25
+</a>
+</li>
+
+<li>
+<a href="profile.html">
+Profil
+</a>
+</li>
+
+<li>
+<a href="report.html">
+Report
+</a>
+</li>
+
+<li>
+<a href="login.html">
+Connexion
+</a>
+</li>
+
+</ul>
+
+</nav>
+
+</header>
+
+<!-- PROFILE -->
+
+<section class="profile-page">
+
+<div class="profile-box">
+
+<img src="assets/images/avatar.png"
+class="avatar">
+
+<h2 id="profile-name">
+
+Utilisateur
+
+</h2>
+
+<p id="profile-role">
+
+Membre
+
+</p>
+
+<hr>
+
+<h3>
+Modifier le profil
+</h3>
+
+<input type="text"
+id="new-username"
+placeholder="Nouveau pseudo">
+
+<input type="password"
+id="new-password"
+placeholder="Nouveau mot de passe">
+
+<button onclick="saveProfile()">
+
+Sauvegarder
+
+</button>
+
+<hr>
+
+<h3>
+Paramètres du site
+</h3>
+
+<select id="font-select">
+
+<option value="Arial">
+Arial
+</option>
+
+<option value="Poppins">
+Poppins
+</option>
+
+<option value="Verdana">
+Verdana
+</option>
+
+<option value="Tahoma">
+Tahoma
+</option>
+
+<option value="Trebuchet MS">
+Trebuchet
+</option>
+
+</select>
+
+<button onclick="changeFont()">
+
+Changer la police
+
+</button>
+
+<hr>
+
+<h3>
+Informations du compte
+</h3>
+
+<p>
+
+Nom utilisateur :
+<span id="account-name"></span>
+
+</p>
+
+<p>
+
+Rôle :
+<span id="account-role"></span>
+
+</p>
+
+<hr>
+
+<button class="logout-btn"
+onclick="logout()">
+
+Déconnexion
+
+</button>
 
 </div>
 
 </section>
 
+<footer>
+
+© Serveur Dédié Routier FS25
+
+</footer>
+
 <script>
 
-const currentUser = localStorage.getItem("currentUser");
-const currentRole = localStorage.getItem("adminRole") || "Membre";
+/* USER */
 
-document.getElementById("profile-name").innerText = currentUser || "Utilisateur";
-document.getElementById("profile-role").innerText = currentRole;
+const currentUser =
+localStorage.getItem(
+"currentUser"
+);
+
+const currentRole =
+localStorage.getItem(
+"adminRole"
+)
+||
+"Membre";
+
+/* AFFICHAGE */
+
+document.getElementById(
+"profile-name"
+).innerText =
+currentUser
+||
+"Utilisateur";
+
+document.getElementById(
+"profile-role"
+).innerText =
+currentRole;
+
+document.getElementById(
+"account-name"
+).innerText =
+currentUser
+||
+"Utilisateur";
+
+document.getElementById(
+"account-role"
+).innerText =
+currentRole;
+
+/* SAVE PROFILE */
 
 function saveProfile(){
 
-const newUsername = document.getElementById("new-username").value;
-const newPassword = document.getElementById("new-password").value;
+const newUsername =
+document.getElementById(
+"new-username"
+).value;
 
-let users = JSON.parse(localStorage.getItem("users")) || [];
+const newPassword =
+document.getElementById(
+"new-password"
+).value;
 
-const index = users.findIndex(u => u.username === currentUser);
+let users =
+JSON.parse(
+localStorage.getItem("users")
+)
+||
+[];
+
+/* CHERCHE USER */
+
+const index =
+users.findIndex(
+u =>
+u.username === currentUser
+);
+
+/* MODIF */
 
 if(index !== -1){
 
 if(newUsername !== ""){
-users[index].username = newUsername;
-localStorage.setItem("currentUser",newUsername);
+
+users[index].username =
+newUsername;
+
+localStorage.setItem(
+"currentUser",
+newUsername
+);
+
 }
 
 if(newPassword !== ""){
-users[index].password = newPassword;
+
+users[index].password =
+newPassword;
+
 }
 
-localStorage.setItem("users",JSON.stringify(users));
-alert("Profil sauvegardé");
+localStorage.setItem(
+"users",
+JSON.stringify(users)
+);
+
+alert(
+"Profil sauvegardé"
+);
+
 location.reload();
+
 }
+
 }
+
+/* FONT */
+
+function changeFont(){
+
+const selectedFont =
+document.getElementById(
+"font-select"
+).value;
+
+document.body.style.fontFamily =
+selectedFont;
+
+localStorage.setItem(
+"siteFont",
+selectedFont
+);
+
+}
+
+/* LOAD FONT */
+
+const savedFont =
+localStorage.getItem(
+"siteFont"
+);
+
+if(savedFont){
+
+document.body.style.fontFamily =
+savedFont;
+
+}
+
+/* LOGOUT */
 
 function logout(){
-localStorage.removeItem("isUser");
-localStorage.removeItem("isAdmin");
-localStorage.removeItem("currentUser");
-window.location.href = "login.html";
+
+localStorage.removeItem(
+"isUser"
+);
+
+localStorage.removeItem(
+"isAdmin"
+);
+
+localStorage.removeItem(
+"currentUser"
+);
+
+window.location.href =
+"login.html";
+
 }
 
 </script>
