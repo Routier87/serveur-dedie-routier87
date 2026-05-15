@@ -1,54 +1,330 @@
 <!DOCTYPE html>
-const username = document.getElementById("admin-username").value;
-const password = document.getElementById("admin-password").value;
+<html lang="fr">
 
-const admin = defaultAdmins.find(a =>
-a.username === username && a.password === password
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Connexion
+</title>
+
+<link rel="stylesheet"
+href="assets/css/style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+<img src="assets/images/logo.png">
+
+<h1>
+Serveur Dédié Routier
+</h1>
+
+</div>
+
+<nav>
+
+<ul>
+
+<li>
+<a href="index.html">
+Accueil
+</a>
+</li>
+
+<li>
+<a href="mods.html">
+Mods
+</a>
+</li>
+
+<li>
+<a href="register.html">
+S'inscrire
+</a>
+</li>
+
+</ul>
+
+</nav>
+
+</header>
+
+<!-- CHOIX -->
+
+<section class="choice-login">
+
+<!-- ADMIN -->
+
+<div class="choice-card">
+
+<h2>
+Connexion Admin
+</h2>
+
+<p>
+Accès au panel administration
+</p>
+
+<button onclick="showAdminLogin()">
+
+Connexion Admin
+
+</button>
+
+</div>
+
+<!-- USER -->
+
+<div class="choice-card">
+
+<h2>
+Connexion Utilisateur
+</h2>
+
+<p>
+Connexion pour télécharger les mods
+</p>
+
+<button onclick="showUserLogin()">
+
+Connexion Utilisateur
+
+</button>
+
+</div>
+
+</section>
+
+<!-- LOGIN ADMIN -->
+
+<div class="login-box"
+id="admin-login"
+style="display:none;">
+
+<h1>
+Connexion Admin
+</h1>
+
+<input type="text"
+id="admin-username"
+placeholder="Nom utilisateur">
+
+<input type="password"
+id="admin-password"
+placeholder="Mot de passe">
+
+<button onclick="loginAdmin()">
+
+Connexion
+
+</button>
+
+<p id="admin-error"></p>
+
+</div>
+
+<!-- LOGIN USER -->
+
+<div class="login-box"
+id="user-login"
+style="display:none;">
+
+<h1>
+Connexion Utilisateur
+</h1>
+
+<input type="text"
+id="user-username"
+placeholder="Nom utilisateur">
+
+<input type="password"
+id="user-password"
+placeholder="Mot de passe">
+
+<button onclick="loginUser()">
+
+Connexion
+
+</button>
+
+<p id="user-error"></p>
+
+</div>
+
+<script>
+
+/* AFFICHAGE */
+
+function showAdminLogin(){
+
+document.getElementById(
+"admin-login"
+).style.display = "flex";
+
+document.getElementById(
+"user-login"
+).style.display = "none";
+
+}
+
+function showUserLogin(){
+
+document.getElementById(
+"user-login"
+).style.display = "flex";
+
+document.getElementById(
+"admin-login"
+).style.display = "none";
+
+}
+
+/* ADMINS DÉJÀ CRÉÉS */
+
+const defaultAdmins = [
+
+{
+username:"fondateur",
+password:"878787",
+role:"Fondateur"
+},
+
+{
+username:"FARM",
+password:"898989",
+role:"Co-Fondateur"
+},
+
+{
+username:"responsable_site",
+password:"2026FS25",
+role:"Responsable Site"
+},
+
+{
+username:"responsable_serveur",
+password:"2026FS25",
+role:"Responsable Serveur"
+}
+
+];
+
+/* LOGIN ADMIN */
+
+function loginAdmin(){
+
+const username =
+document.getElementById(
+"admin-username"
+).value;
+
+const password =
+document.getElementById(
+"admin-password"
+).value;
+
+const admin =
+defaultAdmins.find(a =>
+
+a.username === username
+&&
+a.password === password
+
 );
 
 if(admin){
-localStorage.setItem("isAdmin","true");
-localStorage.setItem("currentUser",username);
-localStorage.setItem("adminRole",admin.role);
-window.location.href = "admin/panel.html";
+
+localStorage.setItem(
+"isAdmin",
+"true"
+);
+
+localStorage.setItem(
+"currentUser",
+username
+);
+
+localStorage.setItem(
+"adminRole",
+admin.role
+);
+
+window.location.href =
+"admin/panel.html";
+
 }else{
-document.getElementById("admin-error").innerText = "Identifiants incorrects";
-}
-}
 
-function registerUser(){
-
-const username = document.getElementById("register-username").value;
-const password = document.getElementById("register-password").value;
-
-const users = JSON.parse(localStorage.getItem("users")) || [];
-
-users.push({username,password});
-
-localStorage.setItem("users",JSON.stringify(users));
-
-alert("Compte créé");
+document.getElementById(
+"admin-error"
+).innerText =
+"Identifiants incorrects";
 
 }
+
+}
+
+/* LOGIN USER */
 
 function loginUser(){
 
-const username = document.getElementById("user-username").value;
-const password = document.getElementById("user-password").value;
+const username =
+document.getElementById(
+"user-username"
+).value;
 
-const users = JSON.parse(localStorage.getItem("users")) || [];
+const password =
+document.getElementById(
+"user-password"
+).value;
 
-const user = users.find(u =>
-u.username === username && u.password === password
+const users =
+JSON.parse(
+localStorage.getItem("users")
+)
+|| [];
+
+const user =
+users.find(u =>
+
+u.username === username
+&&
+u.password === password
+
 );
 
 if(user){
-localStorage.setItem("isUser","true");
-localStorage.setItem("currentUser",username);
-window.location.href = "mods.html";
+
+localStorage.setItem(
+"isUser",
+"true"
+);
+
+localStorage.setItem(
+"currentUser",
+username
+);
+
+window.location.href =
+"mods.html";
+
 }else{
-document.getElementById("user-error").innerText = "Compte introuvable";
+
+document.getElementById(
+"user-error"
+).innerText =
+"Compte introuvable";
+
 }
+
 }
 
 </script>
