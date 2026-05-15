@@ -1,55 +1,196 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
+
 <meta charset="UTF-8">
-<title>Mods FS25</title>
-<link rel="stylesheet" href="assets/css/style.css">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Mods FS25
+</title>
+
+<link rel="stylesheet"
+href="assets/css/style.css">
+
 </head>
+
 <body>
 
 <script>
-const isUser = localStorage.getItem("isUser");
-const isAdmin = localStorage.getItem("isAdmin");
 
-if(isUser !== "true" && isAdmin !== "true"){
-window.location.href = "login.html";
+const isUser =
+localStorage.getItem("isUser");
+
+const isAdmin =
+localStorage.getItem("isAdmin");
+
+/* SI PAS CONNECTÉ */
+
+if(
+isUser !== "true"
+&&
+isAdmin !== "true"
+){
+
+alert(
+"Pour voir les mods, il vous suffit de vous connecter."
+);
+
+window.location.href =
+"login.html";
+
 }
+
 </script>
 
 <header>
+
 <div class="logo">
-<h1>Mods FS25</h1>
+
+<img src="assets/images/logo.png">
+
+<h1>
+Mods FS25
+</h1>
+
 </div>
 
 <nav>
+
 <ul>
-<li><a href="index.html">Accueil</a></li>
-<li><a href="profile.html">Profil</a></li>
-<li><a href="report.html">Report</a></li>
+
+<li>
+<a href="index.html">
+Accueil
+</a>
+</li>
+
+<li>
+<a href="mods.html">
+Mods
+</a>
+</li>
+
+<li>
+<a href="profile.html">
+Profil
+</a>
+</li>
+
+<li>
+<a href="report.html">
+Report
+</a>
+</li>
+
+<li>
+<a href="login.html">
+Connexion
+</a>
+</li>
+
 </ul>
+
 </nav>
+
 </header>
 
-<h1 class="title">Toutes les mises à jour</h1>
+<!-- TITRE -->
 
-<section class="mods-page" id="mods-container"></section>
+<h1 class="title">
+
+Toutes les mises à jour FS25
+
+</h1>
+
+<!-- MODS -->
+
+<section class="mods-page"
+id="mods-container">
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+© Serveur Dédié Routier FS25
+
+</footer>
 
 <script>
 
-const mods = JSON.parse(localStorage.getItem("modsFolders")) || [];
-const container = document.getElementById("mods-container");
+/* RECUP MODS */
+
+const mods =
+JSON.parse(
+localStorage.getItem("modsFolders")
+)
+|| [];
+
+const container =
+document.getElementById(
+"mods-container"
+);
+
+/* SI VIDE */
+
+if(mods.length === 0){
+
+container.innerHTML = `
+
+<div class="mod-box">
+
+<h2>
+Aucune mise à jour
+</h2>
+
+<p>
+Aucun mod disponible actuellement.
+</p>
+
+</div>
+
+`;
+
+}
+
+/* AFFICHAGE */
 
 mods.reverse().forEach(mod => {
 
 container.innerHTML += `
+
 <div class="mod-box">
-<h2>${mod.title}</h2>
-<p>📅 ${mod.date}</p>
-<p>📦 ${mod.size}</p>
-<a href="${mod.link}" target="_blank">
-<button>Télécharger</button>
+
+<h2>
+${mod.title}
+</h2>
+
+<p>
+📅 ${mod.date}
+</p>
+
+<p>
+📦 ${mod.size}
+</p>
+
+<a href="${mod.link}"
+target="_blank">
+
+<button>
+
+Télécharger
+
+</button>
+
 </a>
+
 </div>
+
 `;
 
 });
