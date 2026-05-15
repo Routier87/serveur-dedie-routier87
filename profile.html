@@ -100,8 +100,29 @@ Connexion
 
 <div class="profile-box">
 
+<!-- PHOTO -->
+
+<h3>
+Photo de profil
+</h3>
+
 <img src="assets/images/avatar.png"
+id="profile-avatar"
 class="avatar">
+
+<input type="file"
+id="avatar-input"
+accept="image/*">
+
+<button onclick="saveAvatar()">
+
+Changer la photo
+
+</button>
+
+<hr>
+
+<!-- USER -->
 
 <h2 id="profile-name">
 
@@ -116,6 +137,8 @@ Membre
 </p>
 
 <hr>
+
+<!-- MODIFIER -->
 
 <h3>
 Modifier le profil
@@ -136,6 +159,8 @@ Sauvegarder
 </button>
 
 <hr>
+
+<!-- PARAMETRES -->
 
 <h3>
 Paramètres du site
@@ -173,6 +198,8 @@ Changer la police
 
 <hr>
 
+<!-- INFOS -->
+
 <h3>
 Informations du compte
 </h3>
@@ -192,6 +219,8 @@ Rôle :
 </p>
 
 <hr>
+
+<!-- LOGOUT -->
 
 <button class="logout-btn"
 onclick="logout()">
@@ -251,6 +280,66 @@ document.getElementById(
 "account-role"
 ).innerText =
 currentRole;
+
+/* PHOTO PROFIL */
+
+const savedAvatar =
+localStorage.getItem(
+"profileAvatar"
+);
+
+if(savedAvatar){
+
+document.getElementById(
+"profile-avatar"
+).src =
+savedAvatar;
+
+}
+
+/* SAVE AVATAR */
+
+function saveAvatar(){
+
+const file =
+document.getElementById(
+"avatar-input"
+).files[0];
+
+if(!file){
+
+alert(
+"Sélectionne une image"
+);
+
+return;
+
+}
+
+const reader =
+new FileReader();
+
+reader.onload = function(e){
+
+localStorage.setItem(
+"profileAvatar",
+e.target.result
+);
+
+document.getElementById(
+"profile-avatar"
+).src =
+e.target.result;
+
+alert(
+"Photo sauvegardée"
+);
+
+};
+
+reader.readAsDataURL(file);
+
+}
 
 /* SAVE PROFILE */
 
