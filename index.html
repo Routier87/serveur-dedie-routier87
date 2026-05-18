@@ -272,30 +272,37 @@ Noter le serveur
 </h2>
 
 <p>
+
 Donne une note au serveur FS25
 et laisse un commentaire.
+
 </p>
 
 <div class="stars">
 
-<span onclick="setRating(1)">
-⭐
+<span class="star"
+onclick="setRating(1)">
+☆
 </span>
 
-<span onclick="setRating(2)">
-⭐
+<span class="star"
+onclick="setRating(2)">
+☆
 </span>
 
-<span onclick="setRating(3)">
-⭐
+<span class="star"
+onclick="setRating(3)">
+☆
 </span>
 
-<span onclick="setRating(4)">
-⭐
+<span class="star"
+onclick="setRating(4)">
+☆
 </span>
 
-<span onclick="setRating(5)">
-⭐
+<span class="star"
+onclick="setRating(5)">
+☆
 </span>
 
 </div>
@@ -338,13 +345,32 @@ let selectedRating = 0;
 /* WEBHOOK */
 
 const reviewWebhook =
-"https://discord.com/api/webhooks/1505846516340756510/qrmqskRP2SZEDdn716_Lw_AT3NYNRWjPFc_VXQB3VbaBATMSiyoILr0lF-wq5cOK_HyJ";
+"https://discord.com/api/webhooks/TON_WEBHOOK";
 
 /* ETOILES */
 
 function setRating(rating){
 
 selectedRating = rating;
+
+const stars =
+document.querySelectorAll(".star");
+
+stars.forEach((star,index)=>{
+
+if(index < rating){
+
+star.innerHTML = "★";
+star.style.color = "#FFD700";
+
+}else{
+
+star.innerHTML = "☆";
+star.style.color = "#666";
+
+}
+
+});
 
 document.getElementById(
 "rating-value"
@@ -355,7 +381,7 @@ rating +
 
 }
 
-/* ENVOI */
+/* ENVOI AVIS */
 
 function sendReview(){
 
@@ -465,6 +491,16 @@ document.getElementById(
 ).value = "";
 
 selectedRating = 0;
+
+const stars =
+document.querySelectorAll(".star");
+
+stars.forEach(star=>{
+
+star.innerHTML = "☆";
+star.style.color = "#666";
+
+});
 
 document.getElementById(
 "rating-value"
