@@ -209,7 +209,7 @@ Rejoins notre communauté
 <a href="https://discord.gg/GTum87YFp9"
 target="_blank">
 
-<button>
+<button class="discord-btn">
 
 Discord
 
@@ -255,11 +255,238 @@ Report
 
 </section>
 
+<!-- AVIS -->
+
+<section class="reviews-section">
+
+<h1 class="title">
+
+Avis du Serveur
+
+</h1>
+
+<div class="review-box">
+
+<h2>
+Noter le serveur
+</h2>
+
+<p>
+Donne une note au serveur FS25
+et laisse un commentaire.
+</p>
+
+<div class="stars">
+
+<span onclick="setRating(1)">
+⭐
+</span>
+
+<span onclick="setRating(2)">
+⭐
+</span>
+
+<span onclick="setRating(3)">
+⭐
+</span>
+
+<span onclick="setRating(4)">
+⭐
+</span>
+
+<span onclick="setRating(5)">
+⭐
+</span>
+
+</div>
+
+<p id="rating-value">
+
+0 étoile sélectionnée
+
+</p>
+
+<textarea
+id="review-comment"
+placeholder="Ton commentaire..."
+rows="6"></textarea>
+
+<button onclick="sendReview()">
+
+Envoyer l'avis
+
+</button>
+
+<p id="review-status"></p>
+
+</div>
+
+</section>
+
 <footer>
 
 © Serveur Dédié Routier FS25
 
 </footer>
+
+<script>
+
+/* NOTE */
+
+let selectedRating = 0;
+
+/* WEBHOOK */
+
+const reviewWebhook =
+"https://discord.com/api/webhooks/1505846516340756510/qrmqskRP2SZEDdn716_Lw_AT3NYNRWjPFc_VXQB3VbaBATMSiyoILr0lF-wq5cOK_HyJ";
+
+/* ETOILES */
+
+function setRating(rating){
+
+selectedRating = rating;
+
+document.getElementById(
+"rating-value"
+).innerText =
+
+rating +
+" étoile(s) sélectionnée(s)";
+
+}
+
+/* ENVOI */
+
+function sendReview(){
+
+const isUser =
+localStorage.getItem("isUser");
+
+const isAdmin =
+localStorage.getItem("isAdmin");
+
+if(
+isUser !== "true"
+&&
+isAdmin !== "true"
+){
+
+alert(
+"Connecte-toi pour envoyer un avis."
+);
+
+window.location.href =
+"login.html";
+
+return;
+
+}
+
+const currentUser =
+localStorage.getItem(
+"currentUser"
+)
+||
+"Utilisateur";
+
+const comment =
+document.getElementById(
+"review-comment"
+).value;
+
+if(selectedRating === 0){
+
+alert(
+"Sélectionne une note."
+);
+
+return;
+
+}
+
+if(comment === ""){
+
+alert(
+"Ajoute un commentaire."
+);
+
+return;
+
+}
+
+fetch(reviewWebhook, {
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+content:
+
+"⭐ NOUVEL AVIS FS25 ⭐\n\n"
+
++
+
+"👤 Utilisateur : "
++
+currentUser
+
++
+
+"\n\n🌟 Note : "
++
+selectedRating
++
+"/5"
+
++
+
+"\n\n💬 Commentaire :\n"
++
+comment
+
+})
+
+})
+
+.then(() => {
+
+document.getElementById(
+"review-status"
+).innerText =
+
+"Avis envoyé avec succès";
+
+document.getElementById(
+"review-comment"
+).value = "";
+
+selectedRating = 0;
+
+document.getElementById(
+"rating-value"
+).innerText =
+
+"0 étoile sélectionnée";
+
+})
+
+.catch(() => {
+
+document.getElementById(
+"review-status"
+).innerText =
+
+"Erreur lors de l'envoi";
+
+});
+
+}
+
+</script>
 
 </body>
 </html>
