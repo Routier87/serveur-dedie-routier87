@@ -68,6 +68,12 @@ Report
 </li>
 
 <li>
+<a href="music.html">
+Musiques
+</a>
+</li>
+
+<li>
 <a href="login.html">
 Connexion
 </a>
@@ -150,7 +156,7 @@ Serveur PC Saison
 Serveur PC avec mode saison activé
 </p>
 
-<p class="server-online">
+<p class="server-offline">
 ● HORS LIGNE
 </p>
 
@@ -186,7 +192,7 @@ Serveur PC
 Serveur PC sans mode saison
 </p>
 
-<p class="server-online">
+<p class="server-offline">
 ● HORS LIGNE
 </p>
 
@@ -222,7 +228,7 @@ Console + PC Saison
 Crossplay avec mode saison activé
 </p>
 
-<p class="server-online">
+<p class="server-offline">
 ● HORS LIGNE
 </p>
 
@@ -278,33 +284,33 @@ Connexion
 
 </section>
 
-<!-- AUTRES PANNEAUX -->
+<!-- PAGES MODS -->
 
 <section class="home-grid">
 
-<!-- MODS -->
+<!-- MODS PC SAISON -->
 
 <div class="home-card">
 
-<img src="assets/images/mods-bg.jpg">
+<img src="assets/images/mods-pc-saison.jpg">
 
 <div class="card-overlay"></div>
 
 <div class="card-text">
 
 <h2>
-Mods FS25
+Mods PC Saison
 </h2>
 
 <p>
-Toutes les mises à jour du serveur
+Liste des mods du serveur PC avec saisons
 </p>
 
-<a href="mods.html">
+<a href="mods-pc-saison.html">
 
 <button>
 
-Voir
+Voir les Mods
 
 </button>
 
@@ -313,6 +319,108 @@ Voir
 </div>
 
 </div>
+
+<!-- MODS PC -->
+
+<div class="home-card">
+
+<img src="assets/images/mods-pc.jpg">
+
+<div class="card-overlay"></div>
+
+<div class="card-text">
+
+<h2>
+Mods PC
+</h2>
+
+<p>
+Liste des mods du serveur PC normal
+</p>
+
+<a href="mods-pc.html">
+
+<button>
+
+Voir les Mods
+
+</button>
+
+</a>
+
+</div>
+
+</div>
+
+<!-- MODS CROSSPLAY SAISON -->
+
+<div class="home-card">
+
+<img src="assets/images/mods-crossplay-saison.jpg">
+
+<div class="card-overlay"></div>
+
+<div class="card-text">
+
+<h2>
+Mods Crossplay Saison
+</h2>
+
+<p>
+Liste des mods console + PC avec saisons
+</p>
+
+<a href="mods-crossplay-saison.html">
+
+<button>
+
+Voir les Mods
+
+</button>
+
+</a>
+
+</div>
+
+</div>
+
+<!-- MODS CROSSPLAY -->
+
+<div class="home-card">
+
+<img src="assets/images/mods-crossplay.jpg">
+
+<div class="card-overlay"></div>
+
+<div class="card-text">
+
+<h2>
+Mods Crossplay
+</h2>
+
+<p>
+Liste des mods console + PC normal
+</p>
+
+<a href="mods-crossplay.html">
+
+<button>
+
+Voir les Mods
+
+</button>
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- AUTRES PANNEAUX -->
+
+<section class="home-grid">
 
 <!-- DISCORD -->
 
@@ -411,6 +519,38 @@ Musiques
 
 </div>
 
+<!-- CANDIDATURE -->
+
+<div class="home-card">
+
+<img src="assets/images/candidature.jpg">
+
+<div class="card-overlay"></div>
+
+<div class="card-text">
+
+<h2>
+Candidature
+</h2>
+
+<p>
+Rejoindre le serveur FS25
+</p>
+
+<a href="candidature.html">
+
+<button>
+
+Postuler
+
+</button>
+
+</a>
+
+</div>
+
+</div>
+
 </section>
 
 <!-- AVIS -->
@@ -500,16 +640,10 @@ Envoyer l'avis
 
 <script>
 
-/* NOTE */
-
 let selectedRating = 0;
-
-/* WEBHOOK */
 
 const reviewWebhook =
 "https://discord.com/api/webhooks/TON_WEBHOOK";
-
-/* ETOILES */
 
 function setRating(rating){
 
@@ -542,8 +676,6 @@ rating +
 " étoile(s) sélectionnée(s)";
 
 }
-
-/* ENVOI AVIS */
 
 function sendReview(){
 
