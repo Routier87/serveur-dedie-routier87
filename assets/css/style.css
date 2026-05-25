@@ -613,4 +613,17 @@ font-weight:bold;
 
 }
 
+.server-offline{
+color:#ff4d4d;
+font-size:16px;
+font-weight:bold;
+margin-top:10px;
+}
+
+.server-online{
+color:#4dff88;
+font-size:16px;
+font-weight:bold;
+margin-top:10px;
+
 }
