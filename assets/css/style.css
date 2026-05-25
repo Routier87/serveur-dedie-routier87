@@ -553,6 +553,22 @@ color:#CCC;
 margin-bottom:25px;
 }
 
+/* STATUS SERVEUR */
+
+.server-online{
+color:#00ff66;
+font-size:18px;
+font-weight:bold;
+text-shadow:0 0 10px rgba(0,255,100,0.5);
+}
+
+.server-offline{
+color:#ff3b3b;
+font-size:18px;
+font-weight:bold;
+text-shadow:0 0 10px rgba(255,0,0,0.5);
+}
+
 /* MOBILE */
 
 @media(max-width:900px){
@@ -637,20 +653,4 @@ color:#ff4d4d;
 font-size:16px;
 font-weight:bold;
 margin-bottom:15px;
-}
-
-/* STATUT SERVEUR */
-
-.server-online{
-color:#32ff7e;
-font-size:18px;
-font-weight:bold;
-text-shadow:0 0 10px rgba(50,255,126,0.5);
-}
-
-.server-offline{
-color:#ff4d4d;
-font-size:18px;
-font-weight:bold;
-text-shadow:0 0 10px rgba(255,77,77,0.5);
 }
