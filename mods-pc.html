@@ -1,0 +1,116 @@
+<!-- ========================= -->
+<!-- PAGE : mods-pc.html -->
+<!-- ========================= -->
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mods PC Normal</title>
+
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+<img src="assets/images/logo.png">
+<h1>Serveur PC • Sans Saison</h1>
+</div>
+
+<nav>
+<ul>
+
+<li><a href="index.html">Accueil</a></li>
+<li><a href="mods-pc-saison.html">PC Saison</a></li>
+<li><a href="mods-pc.html">PC Normal</a></li>
+<li><a href="mods-crossplay-saison.html">Crossplay Saison</a></li>
+<li><a href="mods-crossplay.html">Crossplay Normal</a></li>
+
+</ul>
+</nav>
+
+</header>
+
+<h1 class="title">
+Mods • Serveur PC Sans Saison
+</h1>
+
+<section class="mods-page" id="mods-container">
+
+</section>
+
+<script>
+
+const mods =
+JSON.parse(
+localStorage.getItem("modsPc")
+) || [];
+
+const container =
+document.getElementById(
+"mods-container"
+);
+
+function loadMods(){
+
+container.innerHTML = "";
+
+if(mods.length === 0){
+
+container.innerHTML = `
+<div class="mod-box">
+<h2>Aucun mod</h2>
+<p>Aucun mod disponible actuellement.</p>
+</div>
+`;
+
+return;
+
+}
+
+mods.forEach(mod=>{
+
+container.innerHTML += `
+
+<div class="mod-box">
+
+<h2>${mod.name}</h2>
+
+<p>
+Version :
+${mod.version}
+</p>
+
+<p>
+Auteur :
+${mod.author}
+</p>
+
+<a href="${mod.link}" target="_blank">
+
+<button>
+Télécharger
+</button>
+
+</a>
+
+</div>
+
+`;
+
+});
+
+}
+
+loadMods();
+
+</script>
+
+</body>
+</html>
