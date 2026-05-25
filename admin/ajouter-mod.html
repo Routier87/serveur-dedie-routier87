@@ -5,7 +5,12 @@
 
 <meta charset="UTF-8">
 
-<title>Ajouter Mods</title>
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Ajouter Mods
+</title>
 
 <link rel="stylesheet"
 href="../assets/css/style.css">
@@ -13,6 +18,8 @@ href="../assets/css/style.css">
 </head>
 
 <body>
+
+<!-- HEADER -->
 
 <header>
 
@@ -46,15 +53,41 @@ Panel Admin
 
 </header>
 
+<!-- FORMULAIRE -->
+
 <div class="login-box">
 
 <h1>
 Ajouter une Mise à Jour
 </h1>
 
+<select id="server">
+
+<option value="">
+Choisir un serveur
+</option>
+
+<option value="mods-pc-saison">
+Serveur PC Saison
+</option>
+
+<option value="mods-pc">
+Serveur PC
+</option>
+
+<option value="mods-crossplay-saison">
+Crossplay Saison
+</option>
+
+<option value="mods-crossplay">
+Crossplay
+</option>
+
+</select>
+
 <input type="text"
 id="title"
-placeholder="Titre">
+placeholder="Titre du mod">
 
 <input type="text"
 id="date"
@@ -66,19 +99,30 @@ placeholder="Taille du fichier">
 
 <input type="text"
 id="link"
-placeholder="Lien">
+placeholder="Lien de téléchargement">
+
+<input type="text"
+id="image"
+placeholder="Image du mod (URL image)">
 
 <button onclick="saveMod()">
 
-Ajouter
+Ajouter le Mod
 
 </button>
 
+<p id="status"></p>
+
 </div>
+
+<!-- SCRIPT -->
 
 <script>
 
 function saveMod(){
+
+const server =
+document.getElementById("server").value;
 
 const title =
 document.getElementById("title").value;
@@ -92,8 +136,29 @@ document.getElementById("size").value;
 const link =
 document.getElementById("link").value;
 
+const image =
+document.getElementById("image").value;
+
+if(
+server === "" ||
+title === "" ||
+date === "" ||
+size === "" ||
+link === ""
+){
+
+alert(
+"Veuillez remplir tous les champs."
+);
+
+return;
+
+}
+
 const mods =
-JSON.parse(localStorage.getItem("modsFolders"))
+JSON.parse(
+localStorage.getItem(server)
+)
 || [];
 
 mods.push({
@@ -101,16 +166,28 @@ mods.push({
 title,
 date,
 size,
-link
+link,
+image
 
 });
 
 localStorage.setItem(
-"modsFolders",
+server,
 JSON.stringify(mods)
 );
 
-alert("Mise à jour ajoutée");
+document.getElementById(
+"status"
+).innerText =
+
+"✅ Mod ajouté avec succès";
+
+document.getElementById("title").value = "";
+document.getElementById("date").value = "";
+document.getElementById("size").value = "";
+document.getElementById("link").value = "";
+document.getElementById("image").value = "";
+document.getElementById("server").value = "";
 
 }
 
