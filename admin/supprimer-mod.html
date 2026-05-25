@@ -5,7 +5,12 @@
 
 <meta charset="UTF-8">
 
-<title>Supprimer Mods</title>
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Supprimer Mods
+</title>
 
 <link rel="stylesheet"
 href="../assets/css/style.css">
@@ -13,6 +18,8 @@ href="../assets/css/style.css">
 </head>
 
 <body>
+
+<!-- HEADER -->
 
 <header>
 
@@ -46,23 +53,97 @@ Panel Admin
 
 </header>
 
+<!-- CHOIX SERVEUR -->
+
+<div class="login-box">
+
+<h1>
+Choisir un Serveur
+</h1>
+
+<select id="server-select"
+onchange="loadMods()">
+
+<option value="">
+Choisir un serveur
+</option>
+
+<option value="mods-pc-saison">
+Serveur PC Saison
+</option>
+
+<option value="mods-pc">
+Serveur PC
+</option>
+
+<option value="mods-crossplay-saison">
+Crossplay Saison
+</option>
+
+<option value="mods-crossplay">
+Crossplay
+</option>
+
+</select>
+
+</div>
+
+<!-- MODS -->
+
 <section class="mods-page"
 id="mods-container">
 
 </section>
 
+<!-- SCRIPT -->
+
 <script>
 
-let mods =
-JSON.parse(localStorage.getItem("modsFolders"))
-|| [];
-
 const container =
-document.getElementById("mods-container");
+document.getElementById(
+"mods-container"
+);
 
 function loadMods(){
 
+const server =
+document.getElementById(
+"server-select"
+).value;
+
 container.innerHTML = "";
+
+if(server === ""){
+return;
+}
+
+let mods =
+JSON.parse(
+localStorage.getItem(server)
+)
+|| [];
+
+if(mods.length === 0){
+
+container.innerHTML = `
+
+<div class="mod-box">
+
+<h2>
+Aucun mod
+</h2>
+
+<p>
+Aucune mise à jour disponible.
+</p>
+
+</div>
+
+`;
+
+return;
+
+}
 
 mods.forEach((mod,index)=>{
 
@@ -70,9 +151,28 @@ container.innerHTML += `
 
 <div class="mod-box">
 
+<img src="${mod.image}"
+style="
+width:100%;
+height:200px;
+object-fit:cover;
+border-radius:20px;
+margin-bottom:20px;
+">
+
 <h2>
 ${mod.title}
 </h2>
+
+<p>
+📅 ${mod.date}
+</p>
+
+<p>
+📦 ${mod.size}
+</p>
+
+<br>
 
 <button onclick="deleteMod(${index})">
 
@@ -90,18 +190,27 @@ Supprimer
 
 function deleteMod(index){
 
+const server =
+document.getElementById(
+"server-select"
+).value;
+
+let mods =
+JSON.parse(
+localStorage.getItem(server)
+)
+|| [];
+
 mods.splice(index,1);
 
 localStorage.setItem(
-"modsFolders",
+server,
 JSON.stringify(mods)
 );
 
 loadMods();
 
 }
-
-loadMods();
 
 </script>
 
