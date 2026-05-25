@@ -4,6 +4,7 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
@@ -17,6 +18,8 @@ href="assets/css/style.css">
 </head>
 
 <body>
+
+<!-- HEADER -->
 
 <header>
 
@@ -52,13 +55,46 @@ S'inscrire
 </a>
 </li>
 
+<!-- CONNEXION -->
+
+<li id="login-btn">
+
+<a href="login.html">
+Connexion
+</a>
+
+</li>
+
+<!-- PROFIL -->
+
+<li id="profile-btn"
+style="display:none;">
+
+<a href="profile.html">
+Profil
+</a>
+
+</li>
+
+<!-- DECONNEXION -->
+
+<li id="logout-btn"
+style="display:none;">
+
+<a href="#"
+onclick="logout()">
+Déconnexion
+</a>
+
+</li>
+
 </ul>
 
 </nav>
 
 </header>
 
-<!-- CHOIX -->
+<!-- CHOIX CONNEXION -->
 
 <section class="choice-login">
 
@@ -128,7 +164,10 @@ Connexion
 
 </button>
 
-<p id="admin-error"></p>
+<p id="admin-error"
+style="color:#ff4d4d;
+text-align:center;">
+</p>
 
 </div>
 
@@ -156,13 +195,18 @@ Connexion
 
 </button>
 
-<p id="user-error"></p>
+<p id="user-error"
+style="color:#ff4d4d;
+text-align:center;">
+</p>
 
 </div>
 
+<!-- SCRIPT -->
+
 <script>
 
-/* AFFICHAGE */
+/* AFFICHAGE LOGIN */
 
 function showAdminLogin(){
 
@@ -188,7 +232,7 @@ document.getElementById(
 
 }
 
-/* ADMINS DÉJÀ CRÉÉS */
+/* ADMINS */
 
 const defaultAdmins = [
 
@@ -249,6 +293,11 @@ localStorage.setItem(
 );
 
 localStorage.setItem(
+"isUser",
+"false"
+);
+
+localStorage.setItem(
 "currentUser",
 username
 );
@@ -266,6 +315,7 @@ window.location.href =
 document.getElementById(
 "admin-error"
 ).innerText =
+
 "Identifiants incorrects";
 
 }
@@ -309,6 +359,11 @@ localStorage.setItem(
 );
 
 localStorage.setItem(
+"isAdmin",
+"false"
+);
+
+localStorage.setItem(
 "currentUser",
 username
 );
@@ -321,9 +376,67 @@ window.location.href =
 document.getElementById(
 "user-error"
 ).innerText =
+
 "Compte introuvable";
 
 }
+
+}
+
+/* VERIFICATION CONNEXION */
+
+const isAdmin =
+localStorage.getItem(
+"isAdmin"
+);
+
+const isUser =
+localStorage.getItem(
+"isUser"
+);
+
+if(
+isAdmin === "true"
+||
+isUser === "true"
+){
+
+document.getElementById(
+"login-btn"
+).style.display = "none";
+
+document.getElementById(
+"profile-btn"
+).style.display = "block";
+
+document.getElementById(
+"logout-btn"
+).style.display = "block";
+
+}
+
+/* DECONNEXION */
+
+function logout(){
+
+localStorage.removeItem(
+"isAdmin"
+);
+
+localStorage.removeItem(
+"isUser"
+);
+
+localStorage.removeItem(
+"currentUser"
+);
+
+localStorage.removeItem(
+"adminRole"
+);
+
+window.location.href =
+"index.html";
 
 }
 
