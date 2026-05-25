@@ -9,7 +9,7 @@
 content="width=device-width, initial-scale=1.0">
 
 <title>
-𝐋𝐞𝐬 𝐏𝐚𝐲𝐬𝐚𝐧𝐬 𝐝𝐞 𝐅𝐫𝐚𝐧𝐜𝐞 𝐒𝐞𝐫𝐯𝐞𝐮𝐫 𝐃é𝐝𝐢é
+𝐋𝐞𝐬 𝐏𝐚𝐲𝐬𝐚𝐧𝐬 𝐝𝐞 𝐅𝐫𝐚𝐧𝐜𝐞 - FS25
 </title>
 
 <link rel="stylesheet"
@@ -73,10 +73,20 @@ Musiques
 </a>
 </li>
 
-<li>
+<li id="login-btn">
 <a href="login.html">
 Connexion
 </a>
+</li>
+
+<li id="logout-btn"
+style="display:none;">
+
+<a href="#"
+onclick="logout()">
+Déconnexion
+</a>
+
 </li>
 
 </ul>
@@ -156,8 +166,8 @@ Serveur PC Saison
 Serveur PC avec mode saison activé
 </p>
 
-<p class="server-offline">
-● HORS LIGNE
+<p class="server-online">
+● EN LIGNE
 </p>
 
 <a href="server-pc-saison.html">
@@ -228,8 +238,8 @@ Console + PC Saison
 Crossplay avec mode saison activé
 </p>
 
-<p class="server-offline">
-● HORS LIGNE
+<p class="server-online">
+● EN LIGNE
 </p>
 
 <a href="server-crossplay-saison.html">
@@ -639,6 +649,42 @@ Envoyer l'avis
 <!-- SCRIPT -->
 
 <script>
+
+/* GESTION CONNEXION */
+
+const isAdmin =
+localStorage.getItem("isAdmin");
+
+const isUser =
+localStorage.getItem("isUser");
+
+if(
+isAdmin === "true"
+||
+isUser === "true"
+){
+
+document.getElementById(
+"login-btn"
+).style.display = "none";
+
+document.getElementById(
+"logout-btn"
+).style.display = "block";
+
+}
+
+function logout(){
+
+localStorage.removeItem("isAdmin");
+localStorage.removeItem("isUser");
+localStorage.removeItem("currentUser");
+
+window.location.reload();
+
+}
+
+/* AVIS */
 
 let selectedRating = 0;
 
