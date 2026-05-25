@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>
+Candidature FS25
+</title>
+
+<link rel="stylesheet"
+href="assets/css/style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+<img src="assets/images/logo.png">
+
+<h1>
+Les Paysans de France
+</h1>
+
+</div>
+
+<nav>
+
+<ul>
+
+<li><a href="index.html">Accueil</a></li>
+<li><a href="mods.html">Mods</a></li>
+<li><a href="profile.html">Profil</a></li>
+<li><a href="candidature.html">Candidature</a></li>
+
+</ul>
+
+</nav>
+
+</header>
+
+<!-- TITRE -->
+
+<h1 class="title">
+
+Candidature Serveur FS25
+
+</h1>
+
+<!-- FORMULAIRE -->
+
+<div class="login-box">
+
+<h1>
+Rejoindre le serveur
+</h1>
+
+<input
+type="text"
+id="pseudo"
+placeholder="Votre pseudo FS25">
+
+<input
+type="number"
+id="age"
+placeholder="Votre âge">
+
+<input
+type="number"
+id="heures"
+placeholder="Combien d'heures de jeu avez-vous ?">
+
+<input
+type="text"
+id="experience"
+placeholder="Depuis combien de temps jouez-vous à FS25 ?">
+
+<textarea
+id="motivation"
+placeholder="Pourquoi voulez-vous rejoindre le serveur ?">
+</textarea>
+
+<button onclick="sendApplication()">
+
+Envoyer la candidature
+
+</button>
+
+<p id="status"></p>
+
+</div>
+
+<footer>
+
+© Les Paysans de France FS25
+
+</footer>
+
+<script>
+
+/* WEBHOOK DISCORD */
+
+const webhook =
+"TON_WEBHOOK_DISCORD";
+
+/* ENVOI */
+
+function sendApplication(){
+
+const pseudo =
+document.getElementById(
+"pseudo"
+).value;
+
+const age =
+document.getElementById(
+"age"
+).value;
+
+const heures =
+document.getElementById(
+"heures"
+).value;
+
+const experience =
+document.getElementById(
+"experience"
+).value;
+
+const motivation =
+document.getElementById(
+"motivation"
+).value;
+
+if(
+pseudo === "" ||
+age === "" ||
+heures === "" ||
+experience === "" ||
+motivation === ""
+){
+
+alert(
+"Veuillez remplir tous les champs."
+);
+
+return;
+
+}
+
+fetch(webhook,{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+content:
+
+"📋 NOUVELLE CANDIDATURE FS25 📋\n\n"
+
++
+
+"👤 Pseudo : "
++
+pseudo
+
++
+
+"\n🎂 Âge : "
++
+age
+
++
+
+"\n⏰ Heures de jeu : "
++
+heures
+
++
+
+"\n📅 Expérience FS25 : "
++
+experience
+
++
+
+"\n💬 Motivation :\n"
++
+motivation
+
+})
+
+})
+
+.then(() => {
+
+document.getElementById(
+"status"
+).innerText =
+
+"Candidature envoyée avec succès.";
+
+document.getElementById(
+"pseudo"
+).value = "";
+
+document.getElementById(
+"age"
+).value = "";
+
+document.getElementById(
+"heures"
+).value = "";
+
+document.getElementById(
+"experience"
+).value = "";
+
+document.getElementById(
+"motivation"
+).value = "";
+
+})
+
+.catch(() => {
+
+document.getElementById(
+"status"
+).innerText =
+
+"Erreur lors de l'envoi.";
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
